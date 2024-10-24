@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "author": {
-    "name": "Arpit Sengar",
+    "name": "Arpit Sengar"
   },
   "scripts": {
     "dev": "next dev --turbo",
