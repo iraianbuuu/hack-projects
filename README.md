@@ -1,4 +1,4 @@
-# HackProjects 🌟
+# HackProjects
 
 Welcome to **HackProjects** – your go-to platform for discovering and contributing to **Hacktoberfest** projects! This website brings together open-source repositories tagged with Hacktoberfest, making it easy for you to find projects, explore open issues, and make your first contribution.
 
