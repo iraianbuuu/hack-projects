@@ -26,7 +26,7 @@ import { Separator } from '@/components/ui/separator';
 import { profileSchema, type ProfileFormValues } from '@/lib/form-schema';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { AlertTriangleIcon, Trash, Trash2Icon } from 'lucide-react';
+import { AlertTriangleIcon, Trash2Icon } from 'lucide-react';
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 
 interface ProfileFormType {

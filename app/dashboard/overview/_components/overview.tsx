@@ -161,8 +161,8 @@ export default function OverViewPage() {
           <TabsContent value="overview" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {repo_info.map((repo) => (
-                <a href={`${repo.link}`} target="_blank">
-                  <Card className="card-header" key={repo.repo}>
+                <a href={`${repo.link}`} target="_blank" key={repo.repo}>
+                  <Card className="card-header">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium text-gray-500">
                         <a

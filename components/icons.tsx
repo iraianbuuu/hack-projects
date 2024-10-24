@@ -10,7 +10,6 @@ import {
   File,
   FileText,
   HelpCircle,
-  HomeIcon,
   House,
   Image,
   Laptop,
