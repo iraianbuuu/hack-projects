@@ -1,20 +1,23 @@
 'use client';
 
-import axios from 'axios';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import PageContainer from '@/components/layout/page-container';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-interface Repository {
-  id: number;
-  name: string;
-  owner: {
-    login: string;
-  };
+interface RepoInfo {
+  repo: number;
+  owner: string;
+  stars: string;
+  link: string;
 }
 
-export default function OverViewPage({ repo_info }) {
+interface OverViewPageProps {
+  repo_info: RepoInfo[];
+}
+
+// Use the defined props type in your component
+export default function OverViewPage({ repo_info }: OverViewPageProps) {
   return (
     <PageContainer scrollable>
       <div className="space-y-2">
@@ -81,7 +84,7 @@ export default function OverViewPage({ repo_info }) {
                           className="px-3"
                           target="_blank"
                         >
-                          <span className="hover:text-green-500">
+                          <span className="hover:text-amber-500">
                             <i className="bi bi-bullseye"></i> &nbsp;{' '}
                             {repo.stars.replace('Star', '').trim()}
                           </span>

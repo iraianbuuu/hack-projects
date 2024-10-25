@@ -1,7 +1,7 @@
 // 'use client';
 
 import axios from 'axios';
-import OverViewPage from './overview/_components/overview';
+import OverViewPage from './overview/overview';
 
 export const metadata = {
   title: 'HackProjects | Dashboard'
