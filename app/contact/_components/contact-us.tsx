@@ -33,10 +33,7 @@ interface ProfileFormType {
   initialData: any | null;
   categories: any;
 }
-const ProfileCreateForm: React.FC<ProfileFormType> = ({
-  // const ProfileCreateForm: React.FC<ProfileFormType> = ({
-  initialData
-}) => {
+const ContactUsPage: React.FC<ProfileFormType> = () => {
   const defaultValues = {
     jobs: [
       {
@@ -313,4 +310,4 @@ const ProfileCreateForm: React.FC<ProfileFormType> = ({
 };
 
 // export default ContactPage;
-export default ProfileCreateForm;
+export default ContactUsPage;

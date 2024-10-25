@@ -14,7 +14,10 @@ const nextConfig = {
       }
     ]
   },
-  transpilePackages: ['geist']
+  transpilePackages: ['geist'],
+  flags: {
+    DEV_SSR: false,
+  }
 };
 
 module.exports = nextConfig;

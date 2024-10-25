@@ -1,4 +1,3 @@
-import { auth } from '@/auth';
 import Providers from '@/components/layout/providers';
 import { Toaster } from '@/components/ui/sonner';
 import type { Metadata } from 'next';
@@ -17,12 +16,11 @@ const lato = Lato({
   display: 'swap'
 });
 
-export default async function RootLayout({
+export default function RootLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
   return (
     <html
       lang="en"
@@ -31,7 +29,7 @@ export default async function RootLayout({
     >
       <body className={'overflow-hidden'}>
         <NextTopLoader showSpinner={false} />
-        <Providers session={session}>
+        <Providers>
           <Toaster />
           {children}
         </Providers>

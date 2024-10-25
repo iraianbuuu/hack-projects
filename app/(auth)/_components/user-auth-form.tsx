@@ -1,5 +1,7 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
+import { redirect } from 'next/navigation'
 import {
   Form
   // FormControl,
@@ -10,7 +12,7 @@ import {
 } from '@/components/ui/form';
 // import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn } from 'next-auth/react';
+// import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
@@ -38,11 +40,8 @@ export default function UserAuthForm() {
 
   const onSubmit = async (data: UserFormValue) => {
     startTransition(() => {
-      signIn('credentials', {
-        email: data.email,
-        callbackUrl: callbackUrl ?? '/dashboard'
-      });
       toast.success('Welcome!');
+      redirect('/dashboard');
     });
   };
 
@@ -53,25 +52,6 @@ export default function UserAuthForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-2"
         >
-          {/* <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="Enter your email..."
-                    disabled={loading}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
-
           <Button disabled={loading} className="ml-auto w-full" type="submit">
             Continue
           </Button>

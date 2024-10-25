@@ -123,7 +123,7 @@ console.log(repo_info);
 
 async function fetch_data(): Promise<Repository[]> {
   try {
-    const response = await fetch(`http://127.0.0.1:8000`);
+    const response = await fetch(`http://127.0.0.1:8000/data`); //server ip
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -145,20 +145,20 @@ export default function OverViewPage() {
           <h2 className="text-2xl font-bold tracking-tight"></h2>
           <div className="hidden items-center space-x-2 md:flex"></div>
         </div>
-        <Tabs defaultValue="overview" className="space-y-4">
+        <Tabs defaultValue="python" className="space-y-4">
           <TabsList>
-            <TabsTrigger value="overview">Python</TabsTrigger>
+            <TabsTrigger value="python">Python</TabsTrigger>
             <TabsTrigger value="javascript">JavaScript</TabsTrigger>
             <TabsTrigger value="html">HTML</TabsTrigger>
             <TabsTrigger value="typescript">TypeScript</TabsTrigger>
             <TabsTrigger value="java">Java</TabsTrigger>
-            <TabsTrigger value="c">C++</TabsTrigger>
+            <TabsTrigger value="cpp">C++</TabsTrigger>
             <TabsTrigger value="php">PHP</TabsTrigger>
             <TabsTrigger value="go">Go</TabsTrigger>
             <TabsTrigger value="css">CSS</TabsTrigger>
             <TabsTrigger value="c">C</TabsTrigger>
           </TabsList>
-          <TabsContent value="overview" className="space-y-4">
+          <TabsContent value="python" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {repo_info.map((repo) => (
                 <a href={`${repo.link}`} target="_blank" key={repo.repo}>

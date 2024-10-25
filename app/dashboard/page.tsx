@@ -1,12 +1,9 @@
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
+import OverViewPage from './overview/_components/overview';
 
-export default async function Dashboard() {
-  const session = await auth();
+export const metadata = {
+  title: 'HackProjects | Dashboard'
+};
 
-  if (!session?.user) {
-    return redirect('/');
-  } else {
-    redirect('/dashboard/overview');
-  }
+export default function page() {
+  return <OverViewPage />;
 }

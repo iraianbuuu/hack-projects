@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 // import Link from 'next/link';
 import UserAuthForm from './user-auth-form';
 // import { buttonVariants } from '@/components/ui/button';
@@ -7,10 +7,10 @@ import { SquareChevronRight } from 'lucide-react';
 // import Lottie from 'react-lottie';
 // import animationData from '../../../data/lottie.json';
 
-export const metadata: Metadata = {
-  title: 'Authentication',
-  description: 'Authentication forms built using the components.'
-};
+// export const metadata: Metadata = {
+//   title: 'Authentication',
+//   description: 'Authentication forms built using the components.'
+// };
 
 // const defaultOptions = {
 //   loop: true,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 //   }
 // };
 
-export default function SignInViewPage() {
+export default function WelcomePage() {
   return (
     <div className="relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       {/* <Link
@@ -57,7 +57,7 @@ export default function SignInViewPage() {
                 height={400}
                 width={400}
               /> */}
-              BLAH BLAH BLAH
+              Welcome
             </h1>
             {/* <p className="text-sm text-muted-foreground">
               Enter your email below to create your account

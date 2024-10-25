@@ -9,7 +9,8 @@ CORS(app)
 
 def fetch_github_page(**kwargs):
     try:
-        url = 'https://github.com/topics/hacktoberfest?l=python'
+        params = '&'.join([f'{k}={v}' for k, v in kwargs.items()])
+        url = 'https://github.com/topics/hacktoberfest?{}'.format(params)
         response = requests.get(url)
         response.raise_for_status()
         return response.content
@@ -39,9 +40,9 @@ def parse_repositories(page_content):
 
     return repositories
 
-@app.route('/')
-def get_repos():
-    page_content = fetch_github_page()
+@app.route('/data/<string:lang>')
+def get_repos(lang):
+    page_content = fetch_github_page(l=lang)
     if isinstance(page_content, str) and page_content.startswith("Error"):
         return page_content
 
