@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import ContactUsPage from './_components/contact-us';
+// import ContactUsPage from './_components/contact-us';
 
 export const metadata: Metadata = {
   title: 'HackProjects | Contact Us',
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ContactUsPage />;
+  return <h1>Contact Us page goes here.</h1>;
 }

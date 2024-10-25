@@ -29,10 +29,10 @@ export default function RootLayout({
     >
       <body className={'overflow-hidden'}>
         <NextTopLoader showSpinner={false} />
-        <Providers>
-          <Toaster />
-          {children}
-        </Providers>
+        {/* <Providers> */}
+        <Toaster />
+        {children}
+        {/* </Providers> */}
       </body>
     </html>
   );

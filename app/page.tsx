@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
-import WelcomePage from './(auth)/_components/sigin-view';
+import WelcomePage from './welcome/_components/welcome-page';
 
 export const metadata: Metadata = {
-  title: 'Authentication | Sign In',
-  description: 'Sign In page for authentication.'
+  title: 'HackProjects | Welcome',
+  description: 'Welcome page for HackProjects.'
 };
 
 export default function Page() {
