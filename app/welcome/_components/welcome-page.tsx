@@ -2,17 +2,17 @@ import { get } from 'http';
 import UserAuthForm from './user-auth-form';
 import { SquareChevronRight } from 'lucide-react';
 
-async function get_ip() {
-  try {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    return data.ip;
-  } catch (error) {
-    console.error('Error fetching IP address:', error);
-  }
-}
+// async function get_ip() {
+//   try {
+//     const response = await fetch('https://api.ipify.org?format=json');
+//     const data = await response.json();
+//     return data.ip.replace(/\./g, '.');
+//   } catch (error) {
+//     console.error('Error fetching IP address:', error);
+//   }
+// }
 
-const ip = get_ip();
+// const ip = get_ip();
 
 export default function WelcomePage() {
   return (
@@ -36,8 +36,8 @@ export default function WelcomePage() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              <span className="text-gray-500">Welcome,</span>{' '}
-              <span className="text-primary">{ip}</span>
+              <span className="text-gray-500">Welcome,&nbsp;</span>{' '}
+              <span className="text-primary">Hacker</span>
             </h1>
           </div>
           <UserAuthForm />
