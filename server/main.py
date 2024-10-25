@@ -7,6 +7,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+LANGUAGES = ["python", "javascript", "html", "typescript", "java", "cpp", "php", "go", "css", "c"]
+
 def fetch_github_page(**kwargs):
     try:
         params = '&'.join([f'{k}={v}' for k, v in kwargs.items()])
@@ -40,6 +42,23 @@ def parse_repositories(page_content):
 
     return repositories
 
+@app.route('/all')
+def get_all_repos():
+    payload = {}
+    
+    for lang in LANGUAGES:
+        page_content = fetch_github_page(l=lang)
+    
+        if isinstance(page_content, str) and page_content.startswith("Error"):
+            return page_content
+
+        repositories = parse_repositories(page_content)
+        payload[lang] = repositories
+    
+    print(payload)
+    
+    return json.dumps(payload, indent=4)
+
 @app.route('/data/<string:lang>')
 def get_repos(lang):
     page_content = fetch_github_page(l=lang)
@@ -48,6 +67,7 @@ def get_repos(lang):
 
     repositories = parse_repositories(page_content)
     return json.dumps(repositories, indent=4)
+
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)

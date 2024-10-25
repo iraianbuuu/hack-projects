@@ -79,6 +79,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply box-border bg-background text-foreground;
   }
@@ -86,11 +87,14 @@
 
 @layer utilities {
   .min-h-screen {
-    min-height: 100vh; /* Fallback */
+    min-height: 100vh;
+    /* Fallback */
     min-height: 100dvh;
   }
+
   .h-screen {
-    height: 100vh; /* Fallback */
+    height: 100vh;
+    /* Fallback */
     height: 100dvh;
   }
 }
@@ -99,6 +103,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -114,6 +119,7 @@ a {
     transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(1.03);
   background-color: rgba(255, 255, 255, 0.05);
+  cursor: pointer !important;
 }
 
 .company-logo {
@@ -125,6 +131,17 @@ a {
   opacity: 50%;
 }
 
-/* .card-title{
-  color: grey !important;
-} */
+.continue:hover {
+  transition:
+    opacity 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.07) !important;
+}
+
+.continue:focus {
+  outline: none !important;
+}
+
+.continue {
+  outline: none !important;
+}

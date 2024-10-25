@@ -124,7 +124,7 @@ export type Product = {
 export const navItems: NavItem[] = [
   {
     title: 'Home',
-    url: '/dashboard/overview',
+    url: '/dashboard',
     icon: 'house',
     isActive: false,
     items: []
@@ -138,14 +138,14 @@ export const navItems: NavItem[] = [
   },
   {
     title: 'About',
-    url: '/dashboard/about',
+    url: '/about',
     icon: 'info',
     isActive: false,
     items: [] // No child items
   },
   {
     title: 'Contact',
-    url: '/dashboard/contact',
+    url: '/contact',
     icon: 'user',
     isActive: false,
     items: []

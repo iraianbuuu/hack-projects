@@ -1,18 +1,11 @@
-import { get } from 'http';
-import UserAuthForm from './user-auth-form';
+'use client';
+
 import { SquareChevronRight } from 'lucide-react';
+import { redirect } from 'next/navigation';
 
-// async function get_ip() {
-//   try {
-//     const response = await fetch('https://api.ipify.org?format=json');
-//     const data = await response.json();
-//     return data.ip.replace(/\./g, '.');
-//   } catch (error) {
-//     console.error('Error fetching IP address:', error);
-//   }
-// }
-
-// const ip = get_ip();
+function handleContinue() {
+  redirect('/dashboard');
+}
 
 export default function WelcomePage() {
   return (
@@ -40,7 +33,23 @@ export default function WelcomePage() {
               <span className="text-primary">Hacker</span>
             </h1>
           </div>
-          <UserAuthForm />
+          <button
+            type="button"
+            className="continue mb-2 me-2 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-lg shadow-blue-500/50 hover:bg-gradient-to-br dark:shadow-lg dark:shadow-blue-800/80"
+            onClick={handleContinue}
+          >
+            Continue
+          </button>
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs">
+              <span className="bg-background px-2 text-muted-foreground">
+                by <a href="https://github.com/arpy8">arpy8</a>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
