@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-// import ContactUsPage from './_components/contact-us';
+import ContactUsPage from './_components/contact-us';
 
 export const metadata: Metadata = {
   title: 'HackProjects | Contact Us',
