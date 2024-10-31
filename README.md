@@ -40,15 +40,15 @@ We welcome contributions to improve the platform, add more features, or enhance 
    ```bash
    git clone https://github.com/arpy8/hacktoberfest-projects.git
    ```
-3. **Create a branch** for your feature or bug fix:  
+3. **Create a branch** for your feature or bug fix:
    ```bash
    git checkout -b feature/your-feature-name
    ```
-4. Make your changes and **commit**:  
+4. Make your changes and **commit**:
    ```bash
    git commit -m "Add new feature: your-feature-name"
    ```
-5. **Push** your changes:  
+5. **Push** your changes:
    ```bash
    git push origin feature/your-feature-name
    ```
@@ -63,3 +63,7 @@ We welcome contributions to improve the platform, add more features, or enhance 
 ## 👏 Acknowledgments
 
 Big thanks to all the open-source maintainers and contributors for keeping the community alive and thriving. Let’s make Hacktoberfest 2024 a blast!
+
+## Author
+
+- Arpit Sengar ([@arpy8](https://github.com/arpy8))
