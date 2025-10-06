@@ -1,37 +1,33 @@
-import { Toaster } from '@/components/ui/sonner';
-import type { Metadata } from 'next';
-import { Lato } from 'next/font/google';
-import NextTopLoader from 'nextjs-toploader';
-import './globals.css';
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-export const metadata: Metadata = {
-  title: 'Next Shadcn',
-  description: 'Basic dashboard with Next.js and Shadcn'
-};
-
-const lato = Lato({
-  subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  display: 'swap'
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "HackProjects"
+};
+
 export default function RootLayout({
-  children
-}: {
+  children,
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html
-      lang="en"
-      className={`${lato.className}`}
-      suppressHydrationWarning={true}
-    >
-      <body className={'overflow-hidden'}>
-        <NextTopLoader showSpinner={false} />
-        {/* <Providers> */}
-        <Toaster />
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {children}
-        {/* </Providers> */}
       </body>
     </html>
   );
