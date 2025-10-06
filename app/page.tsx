@@ -38,9 +38,11 @@ export default function Home() {
 
   return (
     <>
-      <p>{JSON.stringify(repos)}</p>
+      <p>{JSON.stringify()}</p>
       <div className="container mx-auto p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <RepoCard user="home-assistant" repo="core" />
+        {repos.map((item) => {
+          <RepoCard user={item.repo} repo={item.username} />;
+        })}
       </div>
     </>
   );

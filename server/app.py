@@ -42,8 +42,8 @@ def parse_repositories(page_content: str) -> List[Dict[str, Any]]:
             stars = repo_info[2][6:-1] if repo_info[2].startswith("Star\n") else repo_info[2]
 
             repositories.append({
+                "user": owner,
                 "repo": repo_name,
-                "owner": owner,
                 "stars": stars,
             })
 
