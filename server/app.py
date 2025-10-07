@@ -1,8 +1,10 @@
-from typing import Dict, List, Any
 import bs4
+import uuid
 import requests
+from typing import Dict, List, Any
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
 
@@ -21,7 +23,8 @@ def fetch_github_page(**kwargs) -> str:
         params = '&'.join([f'{k}={v}' for k, v in kwargs.items()])
         url = 'https://github.com/topics/hacktoberfest?{}'.format(params)
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'User-Agent': str(uuid.uuid4()),
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.9',
             'Accept-Encoding': 'gzip, deflate, br',
