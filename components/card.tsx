@@ -62,7 +62,7 @@ export function RepoCard({
               <i className="bi bi-star"></i> &nbsp; {stars}k
             </span>
           </a>
-          <a
+          {/* <a
             href={`https://github.com/${user}/${repo}/stargazers`}
             className="px-3"
             target="_blank"
@@ -70,7 +70,7 @@ export function RepoCard({
             <span className="hover:text-amber-500">
               <i className="bi bi-bullseye"></i> &nbsp; {stars}k
             </span>
-          </a>
+          </a> */}
         </p>
       </div>
     </div>
