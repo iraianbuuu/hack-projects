@@ -17,7 +17,7 @@ export type PresetType =
 
 export type AnimatedGroupProps = {
   children: ReactNode;
-  className?: string;
+  className?: string | any;
   variants?: {
     container?: Variants;
     item?: Variants;
@@ -116,10 +116,12 @@ function AnimatedGroup({
   const itemVariants = variants?.item || selectedVariants.item;
 
   const MotionComponent = React.useMemo(
+    // @ts-ignore
     () => motion.create(as as keyof JSX.IntrinsicElements),
     [as]
   );
   const MotionChild = React.useMemo(
+    // @ts-ignore
     () => motion.create(asChild as keyof JSX.IntrinsicElements),
     [asChild]
   );
