@@ -1,49 +1,33 @@
 "use client";
 
-import RepoCard from "@/components/repoCard";
-import { setServers } from "dns";
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-async function fetchRepos(language = "python") {
-  const res = await fetch(
-    `https://arpy8-hackprojects-server.hf.space/data/${language}`,
-    {
-      next: { revalidate: 60 },
-    }
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch repository data");
-  }
-
-  return res.json();
-}
+import RepoDiv from "../components/repoDiv";
+import SelectBox from "../components/selectbox";
 
 export default function Home() {
-  const [repos, setRepos] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 
+  // initialize from ?lang=...
   useEffect(() => {
-    const loadRepos = async () => {
-      try {
-        var repos = await fetchRepos();
-        setRepos(repos);
-      } catch (err: any) {
-        setError(err.message);
-      }
-    };
+    const lang = searchParams.get("lang");
+    setSelectedLanguage(lang);
+  }, [searchParams]);
 
-    loadRepos();
-  }, []);
+  // update both state and URL (replace so back button isn't spammed)
+  const updateLanguage = (lang: string | null) => {
+    setSelectedLanguage(lang);
+    const url = lang ? `/?lang=${encodeURIComponent(lang)}` : `/`;
+    router.replace(url);
+  };
 
   return (
-    <>
-      <p>{JSON.stringify()}</p>
-      <div className="container mx-auto p-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {repos.map((item) => {
-          <RepoCard user={item.repo} repo={item.username} />;
-        })}
-      </div>
-    </>
+    <div className="container mx-auto p-4 space-y-4">
+      <SelectBox selectedLanguage={selectedLanguage} setSelectedLanguage={updateLanguage} />
+      <RepoDiv selectedLanguage={selectedLanguage} />
+    </div>
   );
 }
