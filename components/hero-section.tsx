@@ -2,14 +2,13 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { ArrowRight, ChevronRight } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { HeroHeader } from './header'
-import { HacktoberFestLogo } from './logo'
-import Squares from './bg';
+import FooterSection from './footer';
 
 const transitionVariants = {
     item: {
@@ -131,7 +130,7 @@ export default function HeroSection() {
                                     delay={0.5}
                                     as="p"
                                     className="mx-auto mt-8 max-w-2xl text-balance text-lg">
-                                    Highly customizable components for building modern websites and applications that look and feel the way you mean it.
+                                    Discover curated open-source projects, contribute meaningful code, and make every pull request count this Hacktoberfest.
                                 </TextEffect>
 
                                 <AnimatedGroup
@@ -155,7 +154,7 @@ export default function HeroSection() {
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
                                             <Link href="/explore">
-                                                <span className="text-nowrap">Start Exploring</span>
+                                                <span className="text-nowrap">Explore Projects</span>
                                             </Link>
                                         </Button>
                                     </div>
@@ -199,7 +198,7 @@ export default function HeroSection() {
                         </AnimatedGroup>
                     </div>
                 </section>
-                <section className="bg-background pb-16 pt-16 md:pb-32">
+                <section className="bg-background pb-16 pt-16">
                     <div className="group relative m-auto max-w-5xl px-6">
                         <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
                             <Link
@@ -213,6 +212,7 @@ export default function HeroSection() {
                     </div>
                 </section>
             </main>
+            <FooterSection />
         </>
     )
 }
