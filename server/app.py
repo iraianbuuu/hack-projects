@@ -80,9 +80,9 @@ def get_all_repos():
 
     return payload
 
-@app.get("/data/{lang}")
-def get_repos(lang: str):
-    page_content = fetch_github_page(l=lang)
+@app.get("/data")
+def get_repos(language: str = "python"):
+    page_content = fetch_github_page(l=language)
     repositories = parse_repositories(page_content)
 
     return repositories
