@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import RepoDiv from "../components/repoDiv";
+import RepoDiv from "../components/card";
 import SelectBox from "../components/selectbox";
 
 export default function Home() {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 async function fetchRepos(language = "python", signal?: AbortSignal) {
   const res = await fetch(
@@ -97,11 +98,12 @@ export function RepoCardSkeleton() {
   );
 }
 
-export function ErrorCard({ message }: { message?: string }) {
+export function ErrorCard({ message }: { message?: string | null }) {
   return (
-    <div className="rounded-xl border border-red-300 dark:border-red-800 w-96 bg-red-50 dark:bg-red-950/30 shadow-sm p-6">
+    <div className="rounded-xl border border-red-300 dark:border-red-800 w-96 bg-red-50 dark:bg-red-950/30 shadow-sm p-6 flex flex-col justify-center items-center">
+      <Image src="/frog.gif" height={20} width={128} alt="sad" className="border border-neutral-700 rounded-xl mb-4" />
       <div className="text-center text-sm text-red-600 dark:text-red-400 font-medium">
-        {message || "⚠️ Something went wrong while loading this repository."}
+        {message || "Something went wrong while loading this repository."}
       </div>
     </div>
   );
@@ -133,15 +135,14 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
     return () => controller.abort();
   }, [selectedLanguage]);
 
+  if (error) return <ErrorCard message={error} />;
   if (loading) return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      {Array.from({length: 4}).map((_, i) => (
+      {Array.from({ length: 4 }).map((_, i) => (
         <RepoCardSkeleton key={i} />
       ))}
     </div>
   );
-
-  if (error) return <ErrorCard message={error} />;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
