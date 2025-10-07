@@ -131,6 +131,7 @@ function AnimatedGroup({
       initial='hidden'
       animate='visible'
       variants={containerVariants}
+      // @ts-ignore
       className={className}
     >
       {React.Children.map(children, (child, index) => (
