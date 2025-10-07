@@ -37,7 +37,7 @@ export function RepoCard({
           <a
             href={`https://github.com/${user}`}
             target="_blank"
-            className="hover:text-amber-500 hover:drop-shadow-lg"
+            className="hover:text-amber-500 hover:drop-shadow-lg transition ease-in-out"
           >
             {user}
           </a>
@@ -79,7 +79,7 @@ export function RepoCard({
 
 export function RepoCardSkeleton() {
   return (
-    <div className="rounded-xl border border-neutral-200 dark:border-neutral-700 w-91 bg-white dark:bg-neutral-900 shadow-sm p-6">
+    <div className="rounded-xl border border-neutral-200 dark:border-neutral-700 w-91 bg-white dark:bg-neutral-900 shadow-sm p-6 animate-pulse">
       {/* Header */}
       <div className="flex items-center justify-between pb-4">
         <div className="h-4 w-16 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
