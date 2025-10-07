@@ -11,13 +11,11 @@ export default function Home() {
   const searchParams = useSearchParams();
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
 
-  // initialize from ?lang=...
   useEffect(() => {
     const lang = searchParams.get("lang");
     setSelectedLanguage(lang);
   }, [searchParams]);
 
-  // update both state and URL (replace so back button isn't spammed)
   const updateLanguage = (lang: string | null) => {
     setSelectedLanguage(lang);
     const url = lang ? `/?lang=${encodeURIComponent(lang)}` : `/`;
