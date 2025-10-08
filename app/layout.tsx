@@ -4,6 +4,7 @@ import "./globals.css";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Suspense } from "react"
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,7 +16,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HackProjects"
+  title: "HackProjects | An Open Source Project Hub",
+  description:
+    "Discover, share, and collaborate on open source projects. Join our community of developers and contribute to innovative solutions.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

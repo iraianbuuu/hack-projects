@@ -73,7 +73,7 @@ export function RepoCard({
 
           <HoverCardTrigger>
             <p className="text-xs text-muted-foreground mb-3">
-              {description.slice(0, 80) + "..." || "No description provided."}
+              {description?.slice(0, 80) + "..." || "No description provided."}
             </p>
           </HoverCardTrigger>
           <HoverCardContent>
@@ -113,20 +113,26 @@ export function RepoCard({
 
 export function RepoCardSkeleton() {
   return (
-    <div className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-sm p-6 py-10 animate-pulse">
+    <div className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-card-foreground transition ease-in-out animate-pulse">
       {/* Header */}
-      <div className="flex items-center justify-between pb-4">
-        <div className="h-4 w-16 bg-neutral-200 dark:bg-neutral-700"></div>
-        <div className="h-5 w-5 bg-neutral-200 dark:bg-neutral-700"></div>
+      <div className="flex flex-row items-center justify-between p-6 pb-0">
+        <div className="h-4 w-24 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
+        <div className="h-5 w-5 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
       </div>
+      {/* Body */}
+      <div className="p-6 pt-0">
+        {/* Repo Name */}
+        <div className="h-8 w-40 bg-neutral-200 dark:bg-neutral-700 rounded mb-3"></div>
 
-      {/* Repo Name */}
-      <div className="h-6 w-32 bg-neutral-200 dark:bg-neutral-700mb-3"></div>
+        {/* Description lines */}
+        <div className="h-3 w-full max-w-[85%] bg-neutral-200 dark:bg-neutral-700 rounded mb-2"></div>
+        <div className="h-3 w-3/4 bg-neutral-200 dark:bg-neutral-700 rounded mb-4"></div>
 
-      {/* Stats */}
-      <div className="flex items-center gap-4">
-        <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700"></div>
-        <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700"></div>
+        {/* Stats */}
+        <div className="flex items-center gap-4">
+          <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
+          <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
+        </div>
       </div>
     </div>
   );

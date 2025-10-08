@@ -142,3 +142,25 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 30px;
+}
+
+/* .select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  top: 65%;
+  opacity: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+} */
