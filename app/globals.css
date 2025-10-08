@@ -121,7 +121,24 @@
   }
 }
 
-::picker(select) {
-  border: none;
-  appearance: base-select;
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: bg-background;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: text-foreground;
+  border-radius: 25px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

@@ -14,7 +14,7 @@ const menuItems = [
     // { name: 'About', href: '#link' },
 ]
 
-export const HeroHeader = () => {
+export const HeroHeader = ({ show_left_buttons = true }: { show_left_buttons?: boolean }) => {
     const [menuState, setMenuState] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
 
@@ -29,8 +29,8 @@ export const HeroHeader = () => {
         <header>
             <nav
                 data-state={menuState && 'active'}
-                className="fixed z-20 w-full px-2">
-                <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5')}>
+                className="fixed z-20 w-full">
+                <div className='mx-auto px-6 transition-all duration-300 border backdrop-blur-md'>
                     <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full justify-between lg:w-auto">
                             <Link
@@ -77,25 +77,26 @@ export const HeroHeader = () => {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="sm"
-                                    className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="http://github.com/arpy8/hackprojects" target='_blank'>
-                                        <i className='bi bi-github'></i> <span>Star Us</span>
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="sm"
-                                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <Link href="/explore">
-                                        <span>Explore Projects</span>
-                                    </Link>
-                                </Button>
-                            </div>
+                            {show_left_buttons && (
+                                <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                                    <Button
+                                        size="sm"
+                                        variant="outline"
+                                        className="lg:inline-flex hidden">
+                                        <Link href="/explore">
+                                            <i className='bi bi-archive-fill'></i>&nbsp;&nbsp;<span>Explore</span>
+                                        </Link>
+                                    </Button>
+                                    <Button
+                                        asChild
+                                        variant="outline"
+                                        size="sm">
+                                        <Link href="http://github.com/arpy8/hackprojects" target='_blank'>
+                                            <i className='bi bi-github'></i>{" "}<span>Star Us</span>
+                                        </Link>
+                                    </Button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
