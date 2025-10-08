@@ -23,8 +23,8 @@ export default function SelectBox({
   ];
 
   return (
-    <div className="grid md:grid-cols-4 grid-cols-1">
-      <div>
+    <div className="gap-4 grid md:grid-cols-2 lg:grid-cols-4">
+      <div className="select-wrapper">
         <label className="block mb-1 text-xs font-medium" htmlFor="language">
           Choose language
         </label>
