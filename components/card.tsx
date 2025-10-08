@@ -3,10 +3,22 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+
+
 async function fetchRepos(language = "python", signal?: AbortSignal) {
   const res = await fetch(
-    `https://arpy8-hackprojects-server.hf.space/data/${language}`,
+    `https://api.github.com/search/repositories?q=topic:hacktoberfest+language:${language}&sort=stars&order=desc&per_page=200`,
     {
+      headers: {
+        Accept: "application/vnd.github+json",
+        // Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        // "X-GitHub-Api-Version": "2022-11-28",
+      },
       next: { revalidate: 60 },
       signal,
     }
@@ -23,14 +35,19 @@ export function RepoCard({
   user,
   repo,
   stars,
+  forkers,
+  description,
 }: {
   user: string;
   repo: string;
-  stars: string;
+  stars: number;
+  forkers: number;
+  description?: string | null;
 }) {
   return (
     <div
-      className="rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-neutral-200 hover:scale-102 bg-white dark:bg-neutral-900 text-card-foreground transition ease-in-out cursor-pointer"
+      className="border border-neutral-200 dark:border-neutral-700 hover:border-neutral-200 hover:scale-102 hover:shadow-sm bg-white dark:bg-neutral-900 text-card-foreground transition ease-in-out cursor-pointer"
+      onClick={() => window.open(`https://github.com/${user}/${repo}`, "_blank")}
     >
       <div className="flex flex-row items-center justify-between p-6 pb-0">
         <h3 className="tracking-tight text-sm font-medium text-gray-500">
@@ -38,39 +55,56 @@ export function RepoCard({
             href={`https://github.com/${user}`}
             target="_blank"
             className="hover:text-amber-500 hover:drop-shadow-lg transition ease-in-out"
+            onClick={(e) => e.stopPropagation()}
           >
             {user}
           </a>
         </h3>
-        <a href={`https://github.com/${user}/${repo}`} target="_blank">
-          <i className="bi bi-github"></i>
-        </a>
+        <i className="bi bi-github"></i>
       </div>
       <div className="p-6 pt-0">
         <div className="pb-2 text-2xl font-bold">
-          <a href={`https://github.com/${user}/${repo}`} target="_blank">
-            {repo}
+          <a href={`https://github.com/${user}/${repo}`} target="_blank" onClick={(e) => e.stopPropagation()}>
+            {repo.slice(0, 19)}
           </a>
         </div>
-        <p className="text-xs text-muted-foreground">
+        <HoverCard>
+
+
+          <HoverCardTrigger>
+            <p className="text-xs text-muted-foreground mb-3">
+              {description.slice(0, 80) + "..." || "No description provided."}
+            </p>
+          </HoverCardTrigger>
+          <HoverCardContent>
+            <p className="text-xs">
+              {description || "No description provided."}
+            </p>
+          </HoverCardContent>
+        </HoverCard>
+
+        {/* Stats */}
+        <p className="text-xs text-muted-foreground space-x-4">
           <a
             href={`https://github.com/${user}/${repo}/stargazers`}
             target="_blank"
             className="hover:text-amber-500"
+            onClick={(e) => e.stopPropagation()}
           >
             <span className="hover:text-amber-500">
-              <i className="bi bi-star"></i> &nbsp; {stars}k
+              <i className="bi bi-star"></i>{" "}{stars}
             </span>
           </a>
-          {/* <a
-            href={`https://github.com/${user}/${repo}/stargazers`}
-            className="px-3"
+          <a
+            href={`https://github.com/${user}/${repo}/forks`}
             target="_blank"
+            className="hover:text-amber-500"
+            onClick={(e) => e.stopPropagation()}
           >
             <span className="hover:text-amber-500">
-              <i className="bi bi-bullseye"></i> &nbsp; {stars}k
+              <i className="bi bi-diagram-2"></i>{" "}{forkers}
             </span>
-          </a> */}
+          </a>
         </p>
       </div>
     </div>
@@ -79,20 +113,20 @@ export function RepoCard({
 
 export function RepoCardSkeleton() {
   return (
-    <div className="rounded-xl border border-neutral-200 dark:border-neutral-700 w-91 bg-white dark:bg-neutral-900 shadow-sm p-6 animate-pulse">
+    <div className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 shadow-sm p-6 py-10 animate-pulse">
       {/* Header */}
       <div className="flex items-center justify-between pb-4">
-        <div className="h-4 w-16 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
-        <div className="h-5 w-5 bg-neutral-200 dark:bg-neutral-700 rounded-full"></div>
+        <div className="h-4 w-16 bg-neutral-200 dark:bg-neutral-700"></div>
+        <div className="h-5 w-5 bg-neutral-200 dark:bg-neutral-700"></div>
       </div>
 
       {/* Repo Name */}
-      <div className="h-6 w-32 bg-neutral-200 dark:bg-neutral-700 rounded mb-3"></div>
+      <div className="h-6 w-32 bg-neutral-200 dark:bg-neutral-700mb-3"></div>
 
       {/* Stats */}
       <div className="flex items-center gap-4">
-        <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
-        <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700 rounded"></div>
+        <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700"></div>
+        <div className="h-3 w-16 bg-neutral-200 dark:bg-neutral-700"></div>
       </div>
     </div>
   );
@@ -100,8 +134,8 @@ export function RepoCardSkeleton() {
 
 export function ErrorCard({ message }: { message?: string | null }) {
   return (
-    <div className="rounded-xl border border-red-300 dark:border-red-800 w-96 bg-red-50 dark:bg-red-950/30 shadow-sm p-6 flex flex-col justify-center items-center">
-      <Image src="/frog.gif" height={20} width={128} alt="sad" className="border border-neutral-700 rounded-xl mb-4" />
+    <div className="border border-red-300 dark:border-red-800 w-96 bg-red-50 dark:bg-red-950/30 shadow-sm p-6 flex flex-col justify-center items-center">
+      <Image src="/frog.gif" height={20} width={128} alt="sad" className="border border-neutral-700 mb-4" />
       <div className="text-center text-sm text-red-600 dark:text-red-400 font-medium">
         {message || "Something went wrong while loading this repository."}
       </div>
@@ -145,18 +179,20 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
   );
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      {repos &&
-        repos.map(
-          (item: { user: string; repo: string; stars: string }, idx: number) => (
-            <RepoCard
-              key={`${item.user}/${item.repo}-${idx}`}
-              user={item.user}
-              repo={item.repo}
-              stars={item.stars}
-            />
-          )
-        )}
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 pb-14">
+      {/* {JSON.stringify(repos?.items)} */}
+      {repos?.items?.map(
+        (item: { name: string; owner: any; stargazers_count: number; forks_count: number; description: string | null }, idx: number) => (
+          <RepoCard
+            key={`${item.name}/${item.owner.login}-${idx}`}
+            user={item.owner.login}
+            repo={item.name}
+            description={item.description}
+            stars={item.stargazers_count}
+            forkers={item.forks_count}
+          />
+        )
+      )}
     </div>
   );
 }

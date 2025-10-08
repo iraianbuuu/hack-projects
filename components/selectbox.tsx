@@ -32,7 +32,7 @@ export default function SelectBox({
           id="language"
           value={selectedLanguage ?? ""}
           onChange={(e) => setSelectedLanguage(e.target.value || null)}
-          className="cursor-pointer block w-full border border-neutral-200 dark:border-neutral-700 px-4 py-2 pr-10 rounded-md text-sm"
+          className="cursor-pointer block w-full border border-neutral-200 dark:border-neutral-700 px-4 py-2 pr-10 text-sm"
         >
           {availableLanguages.map((language) => (
             <option value={language} key={language} className="dark:text-white dark:bg-[#0a0a0a]">

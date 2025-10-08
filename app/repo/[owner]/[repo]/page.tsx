@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import RepoDiv from "../../components/card";
-import SelectBox from "../../components/selectbox";
+import RepoDiv from "@/components/card";
+import SelectBox from "@/components/selectbox";
 import { Button } from "@/components/ui/button";
 
 import { HeroHeader } from "@/components/header";
