@@ -80,14 +80,6 @@ export const HeroHeader = ({ show_left_buttons = true }: { show_left_buttons?: b
                             {show_left_buttons && (
                                 <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                     <Button
-                                        size="sm"
-                                        variant="outline"
-                                        className="lg:inline-flex hidden">
-                                        <Link href="/explore">
-                                            <i className='bi bi-archive-fill'></i>&nbsp;&nbsp;<span>Explore</span>
-                                        </Link>
-                                    </Button>
-                                    <Button
                                         asChild
                                         variant="outline"
                                         size="sm">
