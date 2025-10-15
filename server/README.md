@@ -2,7 +2,7 @@
 title: HackProjects Server
 emoji: 😜
 colorFrom: red
-colorTo: blue
+colorTo: purple
 sdk: docker
 pinned: false
 ---
