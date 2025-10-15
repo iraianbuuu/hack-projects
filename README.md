@@ -1,4 +1,4 @@
-<div align="center"><img src="./public/logo-dark.png" alt="logo" /></div>
+<div align="center" ><a href="https://hackprojects.arpy8.com/"><img src="./public/logo-dark.png" alt="logo" /></a></div>
 <p align="center">Your go-to platform for discovering and contributing to Hacktoberfest projects</p>
 
 ### Project Structure
