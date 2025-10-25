@@ -7,6 +7,6 @@ sdk: docker
 pinned: false
 ---
 
-HuggingFace Repo: https://huggingface.co/spaces/arpy8/hackprojects-server/tree/main
-
-Deployed At: https://arpy8-hackprojects-server.hf.space
+<a href="https://huggingface.co/spaces/arpy8/hackprojects-server/tree/main">
+  <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/open-in-hf-spaces-lg.svg" alt="Open in Spaces">
+</a>
