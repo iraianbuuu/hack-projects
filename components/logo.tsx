@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
-export const Logo = ({ className, uniColor }: { className?: string; uniColor?: boolean }) => {
+export const Logo = ({ className, theme }: { className?: string; theme: string }) => {
     return (
         <Image
-            src="/logo.png"
+            src={theme === 'dark' ? "/logo-dark.png" : "/logo.png"}
             alt="Logo"
             className={cn('text-foreground w-auto', className)}
             height={128}

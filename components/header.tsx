@@ -5,6 +5,8 @@ import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import React from 'react'
 import { cn } from '@/lib/utils'
+import { ModeToggle } from './themes/theme-toggle'
+import { useTheme } from 'next-themes'
 
 const menuItems = [
     { name: '', href: '' },
@@ -17,7 +19,7 @@ const menuItems = [
 export const HeroHeader = ({ show_left_buttons = true }: { show_left_buttons?: boolean }) => {
     const [menuState, setMenuState] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
-
+    const { theme } = useTheme()
     React.useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50)
@@ -37,7 +39,7 @@ export const HeroHeader = ({ show_left_buttons = true }: { show_left_buttons?: b
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <Logo />
+                                <Logo theme={theme} />
                             </Link>
 
                             <button
@@ -79,6 +81,7 @@ export const HeroHeader = ({ show_left_buttons = true }: { show_left_buttons?: b
                             </div>
                             {show_left_buttons && (
                                 <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                                    <ModeToggle />
                                     <Button
                                         asChild
                                         variant="outline"

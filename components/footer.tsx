@@ -1,5 +1,6 @@
 import { Logo } from '@/components/logo'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 
 const links = [
     {
@@ -25,6 +26,7 @@ const links = [
 ]
 
 export default function FooterSection() {
+    const { theme } = useTheme()
     return (
         <footer className="py-4 md:py-14 md:pb-16 border-t">
             <div className="mx-auto max-w-5xl px-6">
@@ -32,7 +34,7 @@ export default function FooterSection() {
                     href="/"
                     aria-label="go home"
                     className="mx-auto block size-fit">
-                    <Logo />
+                    <Logo theme={theme} />
                 </Link>
 
                 <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
