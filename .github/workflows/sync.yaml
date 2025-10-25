@@ -1,4 +1,4 @@
-name: Sync API to Hugging Face Space
+name: Sync API to Hugging Face Space Repo
 
 on:
   workflow_dispatch:
