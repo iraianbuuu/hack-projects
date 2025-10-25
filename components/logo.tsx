@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import { useResolvedThemeSafe  } from '@/hooks/useResolvedTheme';
 
-export const Logo = ({ className, theme }: { className?: string; theme: string }) => {
+export const Logo = ({ className }: { className?: string;}) => {
+    const currentTheme = useResolvedThemeSafe(); 
     return (
         <Image
-            src={theme === 'dark' ? "/logo-dark.png" : "/logo.png"}
+            src={currentTheme === 'dark' ? "/logo-dark.png" : "/logo.png"}
             alt="Logo"
             className={cn('text-foreground w-auto', className)}
             height={128}

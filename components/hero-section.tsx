@@ -12,7 +12,7 @@ import { ArrowRight } from 'lucide-react';
 
 import localFont from 'next/font/local'
 import { cn } from '@/lib/utils';
-import { useTheme } from 'next-themes'
+import { useResolvedThemeSafe } from '@/hooks/useResolvedTheme';
 
 const openSauce = localFont({
   src: '../fonts/open-sauce.one-light.ttf',
@@ -39,7 +39,7 @@ const transitionVariants = {
 }
 
 export default function HeroSection() {
-    const { theme } = useTheme()
+    const currentTheme = useResolvedThemeSafe(); 
     return (
         <>
             <HeroHeader />
@@ -197,7 +197,7 @@ export default function HeroSection() {
                                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                                     <Image
                                         className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border"
-                                        src={theme === 'dark' ? "/sample-dark.png" : "/sample-light.png"}
+                                        src={currentTheme === 'dark' ? "/sample-dark.png" : "/sample-light.png"}
                                         alt="app screen"
                                         width="2700"
                                         height="1440"
