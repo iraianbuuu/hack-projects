@@ -18,6 +18,8 @@ const openSauce = localFont({
   src: '../fonts/open-sauce.one-light.ttf',
 })
 
+const exploreURL = '/explore?lang=python&order=desc&sort=stars'
+
 const transitionVariants = {
     item: {
         hidden: {
@@ -106,7 +108,7 @@ export default function HeroSection() {
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                                 <AnimatedGroup variants={transitionVariants}>
                                     <Link
-                                        href="/explore"
+                                        href={exploreURL}
                                         className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
                                         <span className="text-foreground text-sm">Level up your Hacktoberfest contributions</span>
                                         <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
@@ -162,7 +164,7 @@ export default function HeroSection() {
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="/explore">
+                                            <Link href={exploreURL}>
                                                 <span className="text-nowrap">Explore Projects</span>
                                             </Link>
                                         </Button>

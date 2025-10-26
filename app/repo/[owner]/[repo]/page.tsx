@@ -46,7 +46,7 @@ export default function AppPage() {
       <HeroHeader show_left_buttons={true} />
       <div className="container mx-auto p-4 pt-24 space-y-4">
         {/* <BackButton /> */}
-        <SelectBox selectedLanguage={selectedLanguage} setSelectedLanguage={updateLanguage} />
+        {/* <SelectBox selectedLanguage={selectedLanguage} setSelectedLanguage={updateLanguage} /> */}
         <RepoDiv selectedLanguage={selectedLanguage} />
       </div>
       <FooterSection />

@@ -11,10 +11,19 @@ import {
 import  useInfiniteScroll  from "react-infinite-scroll-hook";
 import { Spinner } from "@/components/ui/spinner"
 
-async function fetchRepos(language = "python", page = 1, signal?: AbortSignal) {
+async function fetchRepos(language = "python", page = 1, sortOption: string | null = null, signal?: AbortSignal) {
   const REPOS_PER_PAGE = 20;
+  let sort: string;
+  let order: string;
+
+  if (sortOption) {
+    const [orderPart, sortPart] = sortOption.split("-");
+    sort = sortPart;
+    order = orderPart;
+  }
+
   const res = await fetch(
-    `https://api.github.com/search/repositories?q=topic:hacktoberfest+language:${language}&sort=stars&order=desc&per_page=${REPOS_PER_PAGE}&page=${page}`,
+    `https://api.github.com/search/repositories?q=topic:hacktoberfest+language:${language}&sort=${sort}&order=${order}&per_page=${REPOS_PER_PAGE}&page=${page}`,
     {
       headers: {
         Accept: "application/vnd.github+json",
@@ -151,7 +160,7 @@ export function ErrorCard({ message }: { message?: string | null }) {
   );
 }
 
-export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string | null }) {
+export default function RepoDiv({ selectedLanguage , selectedSort }: { selectedLanguage: string | null; selectedSort?: string | null; }) {
   const [repos, setRepos] = useState<any>(null);
   const [page, setPage]= useState<number>(1);
   const [hasNextPage, setHasNextPage] = useState<boolean>(true);
@@ -168,7 +177,7 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
           setRepos(null);
         }
         setLoading(true);
-        const data = await fetchRepos(selectedLanguage || "python", page, controller.signal);
+        const data = await fetchRepos(selectedLanguage || "python", page, selectedSort || null, controller.signal);
         if (!controller.signal.aborted) {
           if (page === 1) {
             // First page - set initial data
@@ -195,13 +204,13 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
 
     loadRepos();
     return () => controller.abort();
-  }, [selectedLanguage, page]);
+  }, [selectedLanguage, selectedSort, page]);
 
   // Reset to page 1 when language changes
   useEffect(() => {
     setPage(1);
     setHasNextPage(true);
-  }, [selectedLanguage]);
+  }, [selectedLanguage,selectedSort]);
 
   const [infiniteRef] = useInfiniteScroll({
     loading,
