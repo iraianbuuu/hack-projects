@@ -39,7 +39,7 @@ export const HeroHeader = ({ show_left_buttons = true }: { show_left_buttons?: b
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <Logo theme={theme} />
+                                <Logo/>
                             </Link>
 
                             <button

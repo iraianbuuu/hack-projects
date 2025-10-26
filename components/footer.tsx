@@ -34,7 +34,7 @@ export default function FooterSection() {
                     href="/"
                     aria-label="go home"
                     className="mx-auto block size-fit">
-                    <Logo theme={theme} />
+                    <Logo/>
                 </Link>
 
                 <div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
