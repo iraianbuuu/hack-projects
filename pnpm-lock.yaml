@@ -44,6 +44,9 @@ importers:
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+      react-infinite-scroll-hook:
+        specifier: ^6.0.1
+        version: 6.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       swiper:
         specifier: ^12.0.2
         version: 12.0.2
@@ -886,6 +889,18 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
+  react-infinite-scroll-hook@6.0.1:
+    resolution: {integrity: sha512-5FtJnor4Zyd3uafHCzOlXFCuhFJ2ZzLm3d9XTKbvAN6A/SH+XNFo5IOFk/T1hV5AYy+vOZYoXeH4jkufFB2JVA==}
+    peerDependencies:
+      react: '>=19'
+      react-dom: '>=19'
+
+  react-intersection-observer-hook@4.0.1:
+    resolution: {integrity: sha512-iAic1y/ne0hHjtll6XFFGaq0CWNtukYOA3NXef5yT8TdsA8KdQJ8Ey5CcVWzXKIE9IOU+K9Z40+LXDqBPBdCqw==}
+    peerDependencies:
+      react: '>=19'
+      react-dom: '>=19'
+
   react-remove-scroll-bar@2.3.8:
     resolution: {integrity: sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==}
     engines: {node: '>=10'}
@@ -1679,6 +1694,17 @@ snapshots:
     dependencies:
       react: 19.1.0
       scheduler: 0.26.0
+
+  react-infinite-scroll-hook@6.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-intersection-observer-hook: 4.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+
+  react-intersection-observer-hook@4.0.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   react-remove-scroll-bar@2.3.8(@types/react@19.2.1)(react@19.1.0):
     dependencies:
