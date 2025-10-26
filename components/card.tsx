@@ -8,11 +8,13 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import  useInfiniteScroll  from "react-infinite-scroll-hook";
+import { Spinner } from "@/components/ui/spinner"
 
-
-async function fetchRepos(language = "python", signal?: AbortSignal) {
+async function fetchRepos(language = "python", page = 1, signal?: AbortSignal) {
+  const REPOS_PER_PAGE = 20;
   const res = await fetch(
-    `https://api.github.com/search/repositories?q=topic:hacktoberfest+language:${language}&sort=stars&order=desc&per_page=200`,
+    `https://api.github.com/search/repositories?q=topic:hacktoberfest+language:${language}&sort=stars&order=desc&per_page=${REPOS_PER_PAGE}&page=${page}`,
     {
       headers: {
         Accept: "application/vnd.github+json",
@@ -151,6 +153,8 @@ export function ErrorCard({ message }: { message?: string | null }) {
 
 export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string | null }) {
   const [repos, setRepos] = useState<any>(null);
+  const [page, setPage]= useState<number>(1);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -160,10 +164,28 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
     const loadRepos = async () => {
       try {
         setError(null);
-        setRepos(null);
+        if (page === 1) {
+          setRepos(null);
+        }
         setLoading(true);
-        const data = await fetchRepos(selectedLanguage || "python", controller.signal);
-        if (!controller.signal.aborted) setRepos(data);
+        const data = await fetchRepos(selectedLanguage || "python", page, controller.signal);
+        if (!controller.signal.aborted) {
+          if (page === 1) {
+            // First page - set initial data
+            setRepos(data);
+          } else {
+            // Append to existing data
+            setRepos((prev: any) => ({
+              ...prev,
+              items: [...(prev?.items || []), ...(data.items || [])],
+            }));            
+          }
+          
+          // Check if there are more pages
+          const totalItems = page * 20; // REPOS_PER_PAGE
+          const hasMore = data.total_count && totalItems < data.total_count;
+          setHasNextPage(hasMore);
+        }
       } catch (err: any) {
         if (!controller.signal.aborted) setError(err.message);
       } finally {
@@ -173,10 +195,25 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
 
     loadRepos();
     return () => controller.abort();
+  }, [selectedLanguage, page]);
+
+  // Reset to page 1 when language changes
+  useEffect(() => {
+    setPage(1);
+    setHasNextPage(true);
   }, [selectedLanguage]);
 
+  const [infiniteRef] = useInfiniteScroll({
+    loading,
+    hasNextPage,
+    onLoadMore: () => {
+      setPage((prev) => prev + 1);
+    },
+    disabled: Boolean(error),
+  });
+
   if (error) return <ErrorCard message={error} />;
-  if (loading) return (
+  if (loading && !repos) return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       {Array.from({ length: 4 }).map((_, i) => (
         <RepoCardSkeleton key={i} />
@@ -186,7 +223,6 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 pb-14">
-      {/* {JSON.stringify(repos?.items)} */}
       {repos?.items?.map(
         (item: { name: string; owner: any; stargazers_count: number; forks_count: number; description: string | null }, idx: number) => (
           <RepoCard
@@ -199,6 +235,13 @@ export default function RepoDiv({ selectedLanguage }: { selectedLanguage: string
           />
         )
       )}
+    {
+      hasNextPage && (
+        <div className="col-span-1 md:col-span-2 lg:col-span-4 flex justify-center items-center py-4">
+          <Spinner ref={infiniteRef} className="size-6"/>
+        </div>
+      )
+    }
     </div>
   );
 }
